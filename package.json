@@ -1,0 +1,24 @@
+{
+  "name": "sensor-hub",
+  "version": "1.0.0",
+  "description": "sensor hub rest api",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sensor",
+    "hub",
+    "res",
+    "api"
+  ],
+  "author": "Roman Kollatschny <mail@kollatschny.net>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.16"
+  }
+}
