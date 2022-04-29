@@ -1,0 +1,141 @@
+swagger: "2.0"
+info:
+  description: "API Description for the sensor hub "
+  version: "1.0.0"
+  title: "Raspberry Sensor Hub"
+host: "localhost"
+basePath: "/data"
+schemes:
+- "http"
+paths:
+  /:
+    get:
+      summary: "get all data from the sensor hub"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/SensorHub"
+  /temperature-probe:
+    get:
+      summary: "get the temperature from the probe"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/TemperatureProbe"
+  /status:
+    get:
+      summary: "get the status of the sensor hub"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Status"
+  /onboard:
+    get:
+      summary: "get the onboard measured data"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Onboard"
+  /bmp280:
+    get:
+      summary: "get the measured data from the bmp280 sensor"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Bmp280"
+  /human:
+    get:
+      summary: "check a human was detected"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Human"
+
+definitions:
+  TemperatureProbe:
+    type: "object"
+    properties:
+      temperature-probe:
+        type: "integer"
+        format: "int64"
+  Status:
+    type: "object"
+    properties:
+      status:
+        type: "integer"
+        format: "int64"
+        enum:
+        - 0
+        - 1
+  Onboard:
+    type: "object"
+    properties:
+      temperature:
+        type: "integer"
+        format: "int64"
+      humidity:
+        type: "integer"
+        format: "int64"
+      error:
+        type: "boolean"
+  Bmp280:
+    type: "object"
+    properties:
+      temperature:
+        type: "integer"
+        format: "int64"
+      pressure:
+        type: "object"
+        properties:
+          low:
+            type: "integer"
+            format: "int64"
+          medium:
+            type: "integer"
+            format: "int64"
+          height:
+            type: "integer"
+            format: "int64"
+      status:
+        type: "boolean"
+  Human:
+    type: "object"
+    properties:
+      human:
+        type: "boolean"
+  SensorHub:
+    type: "object"
+    properties:
+      temperature-probe:
+        type: "integer"
+        format: "int64"
+      status:
+        type: "integer"
+        format: "int64"
+        enum:
+        - 0
+        - 1
+      human:
+        type: "boolean"
+      onboard:
+        $ref: "#/definitions/Onboard"
+      bmp280:
+        $ref: "#/definitions/Bmp280"
